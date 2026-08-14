@@ -1,0 +1,6 @@
+# Personlige Claude Code-innstillinger
+.claude/
+
+# Windows
+Thumbs.db
+desktop.ini
