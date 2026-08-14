@@ -427,3 +427,182 @@ a:focus-visible, .knapp:focus-visible { outline: 2px solid var(--plomme); outlin
   text-decoration: underline; text-underline-offset: 3px;
 }
 .bunn-samtykke:hover { color: var(--plomme); }
+
+/* ---------- Bredden i faget: bokens fire deler ---------- */
+.fagdeler { display: grid; gap: 1.5rem; }
+.fagdel {
+  background: var(--flate);
+  border: 1px solid var(--linje);
+  border-radius: var(--radius);
+  box-shadow: var(--skygge);
+  padding: clamp(1.7rem, 3vw, 2.3rem);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.4rem clamp(1.4rem, 3vw, 2.4rem);
+  align-items: start;
+}
+.fagdel-nr {
+  font-family: var(--display);
+  font-weight: 750;
+  font-size: clamp(2.3rem, 4vw, 3.1rem);
+  line-height: 1;
+  color: rgba(138, 46, 126, 0.26);
+  letter-spacing: -0.02em;
+  min-width: 2ch;
+}
+.fagdel h3 {
+  font-family: var(--display); font-weight: 700;
+  font-size: 1.45rem; line-height: 1.15;
+  margin: 0.35rem 0 0.7rem;
+}
+.fagdel-ingress { color: #3a2843; max-width: 70ch; }
+.fagdel-punkter {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem 1.8rem;
+  margin: 1.25rem 0 1.4rem;
+}
+.fagdel-punkter li {
+  font-size: 0.95rem;
+  line-height: 1.58;
+  color: var(--tekst-svak);
+  padding-left: 0.95rem;
+  border-left: 2px solid rgba(138, 46, 126, 0.3);
+}
+.fagdel-punkter strong {
+  font-family: var(--display);
+  font-weight: 650;
+  font-size: 0.97rem;
+  color: var(--tekst);
+}
+.fagdel-tips {
+  background: #fbf2f9;
+  border: 1px solid rgba(138, 46, 126, 0.28);
+  border-radius: 10px;
+  padding: 0.9rem 1.15rem 1rem;
+}
+.fagdel-tips .etikett { font-weight: 700; margin-bottom: 0.25rem; }
+.fagdel-tips p:last-child { font-size: 0.95rem; line-height: 1.6; color: #3a2843; }
+
+/* ---------- Bokpanelet ---------- */
+.bokpanel {
+  background:
+    radial-gradient(700px 400px at 12% -8%, rgba(240, 131, 205, 0.12), transparent 60%),
+    linear-gradient(168deg, var(--dyp) 0%, var(--dypere) 100%);
+  color: #f9f3fa;
+}
+.bokpanel .etikett { color: var(--rosa); }
+.bokpanel h2 { color: #f9f3fa; margin-bottom: 0.4rem; }
+.bok-innhold {
+  display: grid;
+  grid-template-columns: 0.44fr 1fr;
+  gap: clamp(2.2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+.bok-tekst > p { color: rgba(249, 243, 250, 0.88); }
+.bok-tekst > p + p { margin-top: 1.05rem; }
+.bok-tekst .bok-undertittel {
+  font-style: italic;
+  font-size: 1.12rem;
+  color: rgba(249, 243, 250, 0.75);
+  margin: 0 0 1.2rem;
+}
+.bok-fakta {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.4rem, 3vw, 2.6rem);
+  margin: 1.6rem 0 1.7rem;
+  padding: 1.05rem 0;
+  border-top: 1px solid rgba(249, 243, 250, 0.16);
+  border-bottom: 1px solid rgba(249, 243, 250, 0.16);
+}
+.bok-fakta li {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(249, 243, 250, 0.7);
+}
+.bok-fakta li span {
+  display: block;
+  font-family: var(--display);
+  font-weight: 750;
+  font-size: 1.75rem;
+  letter-spacing: 0;
+  color: var(--rosa);
+  margin-bottom: 0.3rem;
+}
+.bok-status {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(249, 243, 250, 0.55);
+  margin-bottom: 0.9rem;
+}
+.bokpanel .knapper { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+
+.bok-omslag {
+  position: relative;
+  aspect-ratio: 5 / 7.2;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  background: linear-gradient(160deg, #fdf8fd 0%, #f3e3f0 100%);
+  border-radius: 6px 14px 14px 6px;
+  box-shadow:
+    0 26px 60px rgba(0, 0, 0, 0.45),
+    0 4px 14px rgba(0, 0, 0, 0.3),
+    inset 14px 0 20px -16px rgba(44, 22, 64, 0.4);
+  padding: clamp(1.5rem, 2.5vw, 2rem) clamp(1.3rem, 2.2vw, 1.7rem);
+  display: flex;
+  flex-direction: column;
+}
+.bok-omslag::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: 11px;
+  width: 1px;
+  background: rgba(44, 22, 64, 0.14);
+}
+.bok-omslag-forfatter {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--plomme);
+}
+.bok-omslag-tittel {
+  font-family: var(--display);
+  font-weight: 750;
+  font-size: clamp(1.3rem, 2vw, 1.65rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--dyp);
+  margin-top: 1.1rem;
+}
+.bok-omslag-strek {
+  width: 44px; height: 3px;
+  background: var(--rosa);
+  border-radius: 2px;
+  margin: 1rem 0;
+}
+.bok-omslag-under {
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #5f4a66;
+}
+.bok-omslag-faser { margin-top: auto; width: 68%; }
+
+@media (max-width: 980px) {
+  .fagdel-punkter { grid-template-columns: 1fr; }
+  .bok-innhold { grid-template-columns: 1fr; }
+  .bok-omslag { max-width: 250px; margin: 0; }
+}
+@media (max-width: 640px) {
+  .fagdel { grid-template-columns: 1fr; gap: 0.6rem; }
+  .fagdel-nr { font-size: 2rem; }
+}
