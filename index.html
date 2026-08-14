@@ -6,6 +6,7 @@
   <title>Forhandlingsteknikk.no – Forhandling er et håndverk</title>
   <meta name="description" content="Profesjonell forhandling er et forskningsbasert håndverk som kan læres. Jan-Erik Sandberg om forhandlingstyper, BATNA, ankereffekten, rapport og samtaleteknikk.">
   <link rel="stylesheet" href="assets/style.css">
+  <!-- Google Analytics (G-MSYCPB2BWM) lastes først etter aktivt samtykke – se skriptet nederst på siden -->
 </head>
 <body>
 
@@ -368,9 +369,80 @@
   <footer class="bunn">
     <div class="ramme">
       <span>© 2026 Jan-Erik Sandberg</span>
+      <button class="bunn-samtykke" id="samtykke-endre" type="button">Informasjonskapsler</button>
       <span>forhandlingsteknikk.no</span>
     </div>
   </footer>
+
+  <div class="samtykke" id="samtykke" role="dialog" aria-labelledby="samtykke-tittel" aria-describedby="samtykke-tekst" hidden>
+    <div class="samtykke-kort">
+      <p class="samtykke-tittel" id="samtykke-tittel">Anonym besøksstatistikk?</p>
+      <p class="samtykke-tekst" id="samtykke-tekst">Jeg vil gjerne bruke Google Analytics til å forstå hvor mange som besøker siden. Ingenting lastes eller lagres før du eventuelt samtykker, og du kan når som helst ombestemme deg via «Informasjonskapsler» nederst på siden.</p>
+      <div class="samtykke-knapper">
+        <button class="knapp samtykke-ja" id="samtykke-ja" type="button">Godta</button>
+        <button class="knapp samtykke-nei" id="samtykke-nei" type="button">Nei takk</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var NOKKEL = 'ft-samtykke';
+    var MAALINGS_ID = 'G-MSYCPB2BWM';
+    var banner = document.getElementById('samtykke');
+    var gaLastet = false;
+
+    function lastGA() {
+      if (gaLastet) return;
+      gaLastet = true;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { dataLayer.push(arguments); };
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'granted'
+      });
+      gtag('js', new Date());
+      gtag('config', MAALINGS_ID);
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + MAALINGS_ID;
+      document.head.appendChild(s);
+    }
+
+    function slettGACookies() {
+      document.cookie.split(';').forEach(function (c) {
+        var navn = c.split('=')[0].trim();
+        if (navn.indexOf('_ga') === 0) {
+          document.cookie = navn + '=; Max-Age=0; path=/; domain=.' + location.hostname;
+          document.cookie = navn + '=; Max-Age=0; path=/';
+        }
+      });
+    }
+
+    function velg(valg) {
+      try { localStorage.setItem(NOKKEL, valg); } catch (e) {}
+      banner.hidden = true;
+      if (valg === 'ja') {
+        if (window.gtag) { gtag('consent', 'update', { analytics_storage: 'granted' }); }
+        lastGA();
+      } else {
+        if (window.gtag) { gtag('consent', 'update', { analytics_storage: 'denied' }); }
+        slettGACookies();
+      }
+    }
+
+    document.getElementById('samtykke-ja').addEventListener('click', function () { velg('ja'); });
+    document.getElementById('samtykke-nei').addEventListener('click', function () { velg('nei'); });
+    document.getElementById('samtykke-endre').addEventListener('click', function () { banner.hidden = false; });
+
+    var lagret = null;
+    try { lagret = localStorage.getItem(NOKKEL); } catch (e) {}
+    if (lagret === 'ja') { lastGA(); }
+    else if (lagret !== 'nei') { banner.hidden = false; }
+  })();
+  </script>
 
 </body>
 </html>
