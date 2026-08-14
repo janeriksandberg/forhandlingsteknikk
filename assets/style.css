@@ -352,3 +352,50 @@ a:focus-visible, .knapp:focus-visible {
   .tema-rutenett { grid-template-columns: 1fr; }
   .zopa-felt { height: 64px; }
 }
+
+/* ---------- To former for forhandling ---------- */
+.former {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4rem;
+}
+.formkort {
+  background: var(--kritt);
+  border: 1px solid var(--linje);
+  border-top: 3px solid var(--mose);
+  border-radius: 4px;
+  padding: 1.9rem 1.8rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.formkort h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.45rem;
+  line-height: 1.15;
+}
+.formkort p { font-size: 1rem; line-height: 1.66; color: #33493f; }
+.formkort .etikett { color: var(--mose); }
+.former-fotnote {
+  margin-top: 1.6rem;
+  max-width: 66ch;
+  font-style: italic;
+  color: #4a6156;
+}
+
+/* Fremhevet forhandlertype */
+.temakort.fremhevet {
+  border: 1px solid var(--messing);
+  border-top: 3px solid var(--messing);
+  background: #fdf9f0;
+}
+.temakort.fremhevet .etikett { color: var(--messing); }
+
+/* Seksjonsrytme for de nye seksjonene */
+.typer { padding-top: 0; }
+.verktoy { padding-top: 0; }
+
+@media (max-width: 900px) {
+  .former { grid-template-columns: 1fr; }
+}
